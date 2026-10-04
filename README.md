@@ -1,6 +1,6 @@
 # Kommissionierwellen: Fristen und Gangblockaden – Streamlit-Demo
 
-*(noch nicht deployed)*
+**[→ Demo live ausprobieren](https://sebastianhanisch-wellenfreigabe-demo.streamlit.app/)**
 
 Interaktive Fall-Demo (Lager-Linie): Kommissionierer arbeiten vorgebildete **Batches** mit **Versandfristen** ab und laufen dabei durch schmale Gänge, in denen sie sich **nicht überholen** können – jeder Gang ist eine
 Einzelressource mit FIFO-Warteschlange am Eingang. Die Demo beantwortet: **Wie viel kostet das Blockieren, wie viel vom Vorteil einer Fristenregel bleibt dann übrig – und wann lohnt es sich, Gangkonflikte gezielt zu
