@@ -23,7 +23,7 @@ Parallelgang-Lager (Depot vorn links, Ganglänge 30 m, Gangabstand 3 m, 1,3 m/s,
 mit höchstens 15 Positionen gebündelt – **ohne Rücksicht auf Fristen**. Route je Batch: S-Shape (aufsteigende Gänge, alternierende Richtung, jeder Gang mit Positionen wird ganz durchquert, bei ungerader Gangzahl der
 letzte als Sackgasse, Ende immer am Depot). K Kommissionierer, Freigabe sofort beim Frei-Werden. Fristen relativ zur geschätzten Gesamtdauer (Fristendruck τ, kleiner = enger), Express-Bestellungen (Gewicht 3) mit
 engerer Frist, Batchfrist = früheste Frist seiner Bestellungen; Ziel: **gewichtete Gesamtverspätung** in Minuten. Die **heißen Gänge** (die 3 vordersten) koppeln Dringlichkeit und Gangkonflikt; der Regler ρ ist der
-Anteil der Express-Positionen, die dort liegen. Alle Zeiten sind ganzzahlige Dezisekunden, damit Simulation und CP-SAT-Modell dieselbe Rechnung machen. Formal im Expander „📐 Mathematische Formulierung" der App.
+Anteil der Express-Positionen, die gezielt dort gezogen werden (die übrigen folgen der allgemeinen Gangverteilung; bei ρ = 0 liegen rund 51 % trotzdem vorn). Alle Zeiten sind ganzzahlige Dezisekunden, damit Simulation und CP-SAT-Modell dieselbe Rechnung machen. Formal im Expander „📐 Mathematische Formulierung" der App.
 
 Nach dem Modell-Register ist das ein **Job-Shop mit Fristen und Obergrenze paralleler Aufträge** (Gänge = Einzelmaschinen, Batches = Aufträge, Kommissionierer = Obergrenze). Ohne Blockieren fällt er exakt auf das
 Modell der `warehouse-transfer-demo` zurück (in den Tests unabhängig nachgerechnet); die Blockier-Bedingung ist dasselbe Prinzip wie in der `quaycrane-demo` (Kräne auf einer gemeinsamen Schiene, dort
@@ -155,3 +155,5 @@ Tests: `python -m pytest tests/ -v`. Preset-Abstimmung: `python tools/tune_prese
 ---
 
 Gebaut mit Streamlit, Plotly, OR-Tools und fpdf2.
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zum Thema: [Lagerlogistik optimieren](https://sebastianhanisch.net/lagerlogistik-optimierung.html).

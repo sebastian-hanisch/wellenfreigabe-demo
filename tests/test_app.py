@@ -12,9 +12,11 @@ import wfg_evaluation as E
 from wfg_presets import PRESET_STATE_KEYS, SETTING_SPECS
 
 APP = str(pathlib.Path(__file__).resolve().parent.parent / "app.py")
-FOOTER = ("Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-          "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-          "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)")
+FOOTER = (
+    "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zum Thema: [Lagerlogistik optimieren](https://sebastianhanisch.net/lagerlogistik-optimierung.html)."
+)
 
 
 @pytest.fixture(autouse=True)
