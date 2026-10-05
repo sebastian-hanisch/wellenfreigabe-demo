@@ -6,15 +6,15 @@ Interaktive Fall-Demo (Lager-Linie): Kommissionierer arbeiten vorgebildete **Bat
 Einzelressource mit FIFO-Warteschlange am Eingang. Die Demo beantwortet: **Wie viel kostet das Blockieren, wie viel vom Vorteil einer Fristenregel bleibt dann übrig – und wann lohnt es sich, Gangkonflikte gezielt zu
 vermeiden, obwohl man dafür dringende Batches zurückstellt?**
 
-Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning". **Erweiterung der Batching-Demo** (`order_batch-demo`, „baut aus"): sie hebt zwei stillschweigende Annahmen dort
-auf – dass Batches ohne Fristen bearbeitet werden und dass gleichzeitig arbeitende Kommissionierer sich nicht behindern (vermerkt in deren „Bewusst nicht enthalten" und „Anpassungsideen"). Regeln im Vergleich:
+Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. **Erweiterung der Batching-Demo** (`order_batch-demo`, „baut aus“): sie hebt zwei stillschweigende Annahmen dort
+auf – dass Batches ohne Fristen bearbeitet werden und dass gleichzeitig arbeitende Kommissionierer sich nicht behindern (vermerkt in deren „Bewusst nicht enthalten“ und „Anpassungsideen“). Regeln im Vergleich:
 **FIFO**, **EDD** (frühester Fristbatch zuerst), **EDD mit Konflikt-Fenster w** (Regler 1 bis 8, w = 1 ist EDD) und, nur für Kleininstanzen, das **exakte Optimum** (CP-SAT) als Maßstab.
 
 ## Warum dieses Problem
 
 Mehr Kommissionierer bedeuten nicht proportional mehr Durchsatz: in schmalen Gängen warten sie aufeinander, und das trifft ausgerechnet die Batches mit knappen Fristen. Der ehrliche Aufhänger ist **nicht**
-„eine schlaue Regel löst das Blockieren": Blockieren ist groß (selbst das exakte Optimum zahlt einen Aufpreis), es frisst einen großen Teil des Vorteils einer Fristenregel, und die einfache Konfliktvermeidung
-(„EDD mit Konflikt-Fenster") hilft nur unter engen Fristen **und** auf wenige „heiße" vordere Gänge konzentrierter Dringlichkeit, sonst schadet sie. Die Hauptansicht formuliert deshalb eine **bedingte Aussage**
+„eine schlaue Regel löst das Blockieren“: Blockieren ist groß (selbst das exakte Optimum zahlt einen Aufpreis), es frisst einen großen Teil des Vorteils einer Fristenregel, und die einfache Konfliktvermeidung
+(„EDD mit Konflikt-Fenster“) hilft nur unter engen Fristen **und** auf wenige „heiße“ vordere Gänge konzentrierter Dringlichkeit, sonst schadet sie. Die Hauptansicht formuliert deshalb eine **bedingte Aussage**
 (Blockieren kaum relevant / Konfliktvermeidung lohnt / schadet / kein belastbarer Unterschied) statt eines Siegers.
 
 ## Modell
@@ -23,7 +23,7 @@ Parallelgang-Lager (Depot vorn links, Ganglänge 30 m, Gangabstand 3 m, 1,3 m/s,
 mit höchstens 15 Positionen gebündelt – **ohne Rücksicht auf Fristen**. Route je Batch: S-Shape (aufsteigende Gänge, alternierende Richtung, jeder Gang mit Positionen wird ganz durchquert, bei ungerader Gangzahl der
 letzte als Sackgasse, Ende immer am Depot). K Kommissionierer, Freigabe sofort beim Frei-Werden. Fristen relativ zur geschätzten Gesamtdauer (Fristendruck τ, kleiner = enger), Express-Bestellungen (Gewicht 3) mit
 engerer Frist, Batchfrist = früheste Frist seiner Bestellungen; Ziel: **gewichtete Gesamtverspätung** in Minuten. Die **heißen Gänge** (die 3 vordersten) koppeln Dringlichkeit und Gangkonflikt; der Regler ρ ist der
-Anteil der Express-Positionen, die gezielt dort gezogen werden (die übrigen folgen der allgemeinen Gangverteilung; bei ρ = 0 liegen rund 51 % trotzdem vorn). Alle Zeiten sind ganzzahlige Dezisekunden, damit Simulation und CP-SAT-Modell dieselbe Rechnung machen. Formal im Expander „📐 Mathematische Formulierung" der App.
+Anteil der Express-Positionen, die gezielt dort gezogen werden (die übrigen folgen der allgemeinen Gangverteilung; bei ρ = 0 liegen rund 52 % trotzdem vorn). Alle Zeiten sind ganzzahlige Dezisekunden, damit Simulation und CP-SAT-Modell dieselbe Rechnung machen. Formal im Expander „📐 Mathematische Formulierung“ der App.
 
 Nach dem Modell-Register ist das ein **Job-Shop mit Fristen und Obergrenze paralleler Aufträge** (Gänge = Einzelmaschinen, Batches = Aufträge, Kommissionierer = Obergrenze). Ohne Blockieren fällt er exakt auf das
 Modell der `warehouse-transfer-demo` zurück (in den Tests unabhängig nachgerechnet); die Blockier-Bedingung ist dasselbe Prinzip wie in der `quaycrane-demo` (Kräne auf einer gemeinsamen Schiene, dort
@@ -68,7 +68,7 @@ Alle Zahlen sind deterministisch und in `tests/test_claims.py` nachgerechnet (St
 - **Nicht kalibriert**: ρ, heiße Gänge und Fristenverteilung sind synthetisch, nicht an einem echten Lager. Die Kernaussage (das Vorzeichen des Fenster-Effekts hängt von Fristendruck und Dringlichkeitskonzentration ab)
   ist robust über die getesteten Zellen, die Prozentwerte sind es nicht.
 - **Exakte Referenz nur für Kleininstanzen** (bis 10 Batches, 30 Bestellungen; CP-SAT beweist bei etwa 7 bis 9 Batches, bei 17 nicht): für die Standardgröße ist das Optimum unbekannt, das Potenzial dort nur
-  abschätzbar. Auch im Exakt-Tab sind nicht bewiesene Werte als Näherung gekennzeichnet (Potenzial „mindestens", Preis „höchstens" bzw. „Näherung").
+  abschätzbar. Auch im Exakt-Tab sind nicht bewiesene Werte als Näherung gekennzeichnet (Potenzial „mindestens“, Preis „höchstens“ bzw. „Näherung“).
 - **Die gezeigte Instanz ist ein Einzelfall**: der Seed bestimmt nur das Gantt. Die Preset-Seeds liegen außerhalb der Stichprobe (Seeds 0 bis 79) und wurden so gewählt, dass Wartezeitanteil und Verspätung nahe am
   Populationsmittel des Presets liegen (`tools/tune_presets.py --seeds`).
 
@@ -97,7 +97,7 @@ Nach dem Modell-Register ist die Kombination formal ein **Job-Shop mit Fristen u
 - **Presets** (`test_stories.py`, `test_preset_stories.py`): jedes Abnahmekriterium kippt an künstlichen Werten genau an seiner Schwelle, Vorzeichen-Kriterien nur zusammen mit der Standardfehler-Bedingung; die echten
   Presets erfüllen ihre Kriterien auf den 80 Instanzen.
 - **Figuren** (`test_visualization.py`): Gantt (Balken je Gangbesuch gegen das Protokoll, Wartezeit gegen die Simulation, Legende), Balkengrafiken, alle Achsen `fixedrange`.
-- **PDF** (`test_pdf_export.py`): Sonderzeichen-Bereinigung (fpdf2 stürzt bei „–", „€", Emoji und dem Unicode-Minus ab – mit den genauen Zeichen getestet), jedes Preset, Reglergrenzen, Exakt-Abschnitt.
+- **PDF** (`test_pdf_export.py`): Sonderzeichen-Bereinigung (fpdf2 stürzt bei „–“, „€“, Emoji und dem Unicode-Minus ab – mit den genauen Zeichen getestet), jedes Preset, Reglergrenzen, Exakt-Abschnitt.
 - **Aussagen** (`test_claims.py`): jede Zahl dieser README.
 - **End-to-End** (`test_app.py`, AppTest): Skelett und Footer, jedes Preset, Permalink, alle Regler an Min und Max, kein toter Regler, alle vier Meldungszustände, Exakt-Tab (Größenpr., Button-Pfad mit Stub und
   mit kurzem echtem Limit, Cooldown, Veralten, fehlender Solver), PDF, Texte.
@@ -105,7 +105,7 @@ Nach dem Modell-Register ist die Kombination formal ein **Job-Shop mit Fristen u
 Zusätzlich ein Fehler-Einbau-Test (`tools/mutation_check.py`, 76 Mutanten über `wfg_scenario`, `wfg_sim`, `wfg_cp`, `wfg_evaluation`, `wfg_presets`, `wfg_stories`, `wfg_visualization`, `wfg_pdf_export`):
 **76 gefunden, 0 überlebt, 0 Fehler in der Mutantenliste.** Das Werkzeug prüft sich selbst: vor dem Lauf muss eine unveränderte Kopie alle Tests bestehen (sonst Abbruch).
 
-**Beim Bau gefundene Testlücken (per Mutationstest, dann geschlossen):** der erste Lauf meldete „76 gefunden", war aber wertlos – auch ein Mutant ohne jede Änderung „fiel durch", weil die Kopie das README nicht enthielt, das
+**Beim Bau gefundene Testlücken (per Mutationstest, dann geschlossen):** der erste Lauf meldete „76 gefunden“, war aber wertlos – auch ein Mutant ohne jede Änderung „fiel durch“, weil die Kopie das README nicht enthielt, das
 `test_claims.py` liest. Nach der Korrektur und der Selbstprüfung überlebten vier echte Mutanten: (1) die Zählung verspäteter Bestellungen (`tard > 0` → `>= 0`) – geschlossen durch Handinstanz und unabhängiges Nachzählen;
 (2) die Größenprüfung des Exakt-Tabs an der Grenze (`<=` → `<` bei 10 Batches) – geschlossen durch Grenzwert-Tests mit genau 10/11 Batches und 30/31 Bestellungen; (3) die Gewichte im CP-Ziel (`wt * t` → `t`) – geschlossen durch eine
 CP-Handinstanz mit Gewicht 3 (Optimum 300 statt 200); (4) das Zurückrunden beim Einrasten des Fristendrucks (`0,4 + k × 0,1` liefert bei k = 2, 3, 8, 13, 14 Gleitkomma-Rauschen wie 0,6000000000000001) – geschlossen durch einen Test
@@ -120,7 +120,7 @@ CP-Handinstanz mit Gewicht 3 (Optimum 300 statt 200); (4) das Zurückrunden beim
 | `wfg_presets.py` | `SETTING_SPECS`, Permalink, Presets, Seed-Knopf | Muster `rrs_presets.py` |
 | `wfg_scenario.py` | `Cfg`, Greedy-Seed-Batching, S-Shape-Route, `make_instance` | `messreihe_wellen_konflikt/wellen.py`, unverändert |
 | `wfg_sim.py` | Ereignissimulation mit Gang-FIFO, Regeln FIFO/EDD/EDD-w | `wellen.py`, unverändert |
-| `wfg_cp.py` | CP-SAT-Modell (`ortools` beim Aufruf importiert), Größenprüfung des Exakt-Tabs | `wellen.py`, unverändert (+ Größenprüfung) |
+| `wfg_cp.py` | CP-SAT-Modell (`ortools` beim Aufruf importiert), Größenprüfung des Exakt-Tabs | `wellen.py`, unverändert (+ Größenprüfung, Zielwert gerundet statt abgeschnitten) |
 | `wfg_evaluation.py` | Population (80 Instanzen), gepaarte Urteile, Meldungszustände, Kommissionierer- und ρ-Sweep, Exakt-Zusammenfassung | Muster `rvm_evaluation.py` |
 | `wfg_visualization.py` | Gantt der Gang-Belegung, Vorteil je Kommissionierer-Zahl, Fenster-Gewinn je ρ (alle Achsen fest) | neu |
 | `wfg_ui_panel.py` | Kennzahlen (2 × 2), Meldung, Regel-Panel, Vergleichstabelle, Exakt-Ergebnis | Muster `rrs_ui_panel.py` |
@@ -134,7 +134,7 @@ CP-Handinstanz mit Gewicht 3 (Optimum 300 statt 200); (4) das Zurückrunden beim
 
 Die folgenden Erweiterungen sind ausdrücklich nicht Teil von Version 1 – jede würde Größenordnung und Aussage verschieben und gehört als Ausbau genannt, nicht stillschweigend eingebaut:
 
-- **Bestellungen, die über die Zeit eintreffen** (echte Wellen statt „alles zum Zeitpunkt 0").
+- **Bestellungen, die über die Zeit eintreffen** (echte Wellen statt „alles zum Zeitpunkt 0“).
 - **Andere Routen-Strategien** (Largest-Gap, Rückkehr-Routen) statt S-Shape mit ganzer Gangdurchquerung.
 - **Blockier-bewusste Routenplanung** (Besuchsreihenfolge im Batch an freie Gänge anpassen) – könnte mehr vom Rest-Potenzial heben, das der exakte Maßstab zeigt.
 - **Mehrfachbelegung breiter Gänge** (Überholen, mehrere Kommissionierer je Gang) statt Einzelressource.

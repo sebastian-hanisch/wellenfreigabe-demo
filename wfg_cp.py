@@ -1,6 +1,6 @@
 """Exakte Referenz (CP-SAT) fuer Kleininstanzen: Job-Shop-artiges Modell mit Cumulative(K) ueber die Batches.
 
-`solve_cp` UNVERAENDERT uebernommen aus lager-planung/messreihe_wellen_konflikt/wellen.py. `ortools` wird
+`solve_cp` uebernommen aus lager-planung/messreihe_wellen_konflikt/wellen.py (nur der Zielwert wird gerundet statt abgeschnitten). `ortools` wird
 erst in der Funktion importiert, damit die App auch dann startet, wenn der Solver fehlt (nur der Exakt-Tab
 braucht ihn). Dazu die Groessenpruefung des Exakt-Tabs (Plan Abschnitt 8)."""
 
@@ -59,5 +59,6 @@ def solve_cp(inst: dict, K: int | None = None, blocking: bool = True, time_limit
     solver.parameters.num_workers = workers
     status = solver.Solve(m)
     ok = status in (cp_model.OPTIMAL, cp_model.FEASIBLE)
-    return dict(status=solver.StatusName(status), obj=int(solver.ObjectiveValue()) if ok else None,
+    # round, nicht int: der Zielwert kommt als Gleitkommazahl (z. B. 1626.9999999999998 fuer 1627) und int() schnitt eine Dezisekunde ab
+    return dict(status=solver.StatusName(status), obj=int(round(solver.ObjectiveValue())) if ok else None,
                 bound=solver.BestObjectiveBound() if ok else None, wall=solver.WallTime())

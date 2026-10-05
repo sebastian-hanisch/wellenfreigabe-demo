@@ -51,7 +51,7 @@ st.markdown(
 Mehr Kommissionierer bedeuten nicht proportional mehr Durchsatz: In schmalen Gängen **blockieren** sie sich, und das trifft ausgerechnet die Batches mit knappen **Fristen**. Die Demo zeigt, wie viel das
 Blockieren kostet, wie viel vom Vorteil einer Fristenregel übrig bleibt und wann sich ein **Konflikt-Fenster** lohnt, das Gangkonflikte gezielt vermeidet – mit dem exakten Optimum als Maßstab für kleine Fälle.
 Eine **Erweiterung der Batching-Demo** (`order_batch-demo`): sie hebt deren stillschweigende Annahmen auf, dass Batches ohne Fristen bearbeitet werden und dass sich gleichzeitig arbeitende Kommissionierer nicht
-behindern. Wie das Modell funktioniert, steht im Expander „Wie funktioniert diese Demo?" weiter unten, die formale Beschreibung im Expander „📐 Mathematische Formulierung". Ohne Blockieren ist das Modell die
+behindern. Wie das Modell funktioniert, steht im Expander „Wie funktioniert diese Demo?“ weiter unten, die formale Beschreibung im Expander „📐 Mathematische Formulierung“. Ohne Blockieren ist das Modell die
 `warehouse-transfer-demo` (Fristen-Disposition), das Blockieren auf gemeinsamer Bahn zeigt die `quaycrane-demo` in einer Dimension.
 """
 )
@@ -85,7 +85,7 @@ with st.sidebar:
                                  "Konzentration nie wirkungslos ist.")
     hot_corr_pct = st.slider("Konzentration auf vordere Gänge", *bounds("hot_corr_slider"), step=C.HOT_CORR_STEP,
                              key="hot_corr_slider", format="%d%%",
-                             help="ρ: Anteil der Express-Positionen, die gezielt in den 3 vordersten („heißen“) Gängen gezogen werden; die übrigen folgen der allgemeinen Gangverteilung (bei ρ = 0 liegen rund 51 % der Express-Positionen trotzdem vorn). "
+                             help="ρ: Anteil der Express-Positionen, die gezielt in den 3 vordersten („heißen“) Gängen gezogen werden; die übrigen folgen der allgemeinen Gangverteilung (bei ρ = 0 liegen rund 52 % der Express-Positionen trotzdem vorn). "
                                   "Der Schlüssel zur Wechselwirkung zwischen Dringlichkeit und Gangkonflikt.")
     window = st.slider("Konflikt-Fenster w", *bounds("window_slider"), key="window_slider",
                        help="Unter den w dringendsten Batches wird der mit den wenigsten Gangkonflikten freigegeben. "
