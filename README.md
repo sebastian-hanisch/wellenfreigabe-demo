@@ -83,7 +83,7 @@ Nach dem Modell-Register ist die Kombination formal ein **Job-Shop mit Fristen u
 
 ## Tests und Verifikation
 
-`python -m pytest tests/ -v` – 222 Tests, rund 2 1/2 Minuten (davon etwa 110 s AppTests). Zusammensetzung:
+`python -m pytest tests/ -v` – 228 Tests, rund 2 1/2 Minuten (davon etwa 110 s AppTests). Zusammensetzung:
 
 - **Kernlogik** (`test_core_checks.py`): alle 7 Checks aus `messreihe_wellen_konflikt/check.py` – Handinstanz (Blockieren kostet exakt eine Gangdauer), K = 1 → nie Blockieren, ohne Blockieren = unabhängiges
   List-Scheduling (240 Fälle), Laufzeit = Arbeit + Wartezeit und keine Doppelbelegung, Instanz-Sanity, Fenster-Regel wird nachweislich ausgeführt, CP-Referenz (klein und mit kurzem Limit, nur Beweisbares: ein
