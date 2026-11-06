@@ -56,6 +56,17 @@ behindern. Wie das Modell funktioniert, steht im Expander „Wie funktioniert di
 """
 )
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/kommissionierwellen-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+In einem Lager sammeln mehrere Beschäftigte die Waren für Kundenbestellungen ein. Jede **Sammelrunde** (ein Batch) hat eine **Frist**. Die Gänge sind so schmal, dass niemand überholen kann: Wer zu einem besetzten Gang kommt, wartet am Eingang. Dieses gegenseitige Aufhalten heißt **Blockieren**. Verglichen werden drei Regeln, die entscheiden, welche Sammelrunde als Nächste losgeht: der Reihe nach, Dringendes zuerst und Dringendes zuerst mit einem **Konflikt-Fenster**, das unter den dringendsten Runden eine mit wenigen Gangüberschneidungen wählt. Für kleine Fälle liefert ein Rechner den bestmöglichen Plan als Maßstab. Die Demo zeigt, wie viel das Blockieren kostet, wie viel vom Vorteil einer Fristenregel übrig bleibt und wann sich das Ausweichen lohnt.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/kommissionierwellen-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 preset_names = list(C.PRESETS)
 for row in (preset_names[:3], preset_names[3:]):
@@ -296,6 +307,26 @@ Vorzeichen gilt nur ab 2 Standardfehlern. Der Seed bestimmt nur die gezeigte Ins
     )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/kommissionierwellen-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind ein Lager mit parallelen Gängen, in dem jeder Gang nur einen Kommissionierer zugleich aufnimmt, vorgebildete Batches mit Fristen und $K$ Kommissionierer. Gesucht ist eine Freigabereihenfolge der Batches, die die gewichtete Gesamtverspätung klein hält.
+
+| Symbol | Bedeutung |
+|---|---|
+| $b$, $i$ | ein Batch bzw. ein Gangbesuch $i$ innerhalb des Batches |
+| $d_i$, $w_i$ | Dauer des Besuchs $i$ (Gang durchqueren plus Pickzeiten) bzw. Querweg vor dem Besuch (nicht zu verwechseln mit dem Fenster $w$) |
+| $S_b$, $E_b$ | Start und Ende von Batch $b$ am Depot |
+| $K$ | Zahl der Kommissionierer |
+| $o$, $f_o$, $\omega_o$ | eine Bestellung, ihre Frist und ihr Gewicht (Express 3, sonst 1) |
+| $w$, $W$ | Fenstergröße bzw. die $w$ dringendsten wartenden Batches |
+| $\text{conf}(c)$ | Konflikt-Wert des Kandidaten $c$: wie viele seiner Gänge die gerade aktiven Batches noch ansteuern |
+| $\Delta_j$ | gepaarte Differenz der gewichteten Verspätung zweier Regeln auf Instanz $j$ |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/kommissionierwellen-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Batches und Besuche.** Batch $b$ hat Besuche $i = 0, \dots, m_b-1$ mit Gang $a_i$ und Dauer $d_i$ (Gehen durch den Gang plus Pickzeiten) sowie Wege $w_i$ (Querweg zum nächsten Gang). Startzeit $S_b$ (der

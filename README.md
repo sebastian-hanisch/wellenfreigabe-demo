@@ -56,12 +56,12 @@ Alle Zahlen sind deterministisch und in `tests/test_claims.py` nachgerechnet (St
 | Wann lohnt Konfliktvermeidung? | Nur bei engen Fristen **und** konzentrierter Dringlichkeit: τ = 0,5, ρ = 100 %, w = 4: **+17,9 ± 5,3** Minuten (positiv = das Fenster hilft) | `::test_the_two_regimes_of_the_window` |
 | Wann schadet sie? | Bei lockeren Fristen und unabhängiger Dringlichkeit: τ = 1,6, ρ = 0 %, w = 4: **-41,1 ± 3,0** Minuten – die Regel opfert Dringlichkeit für Konfliktvermeidung, die dann nichts bringt | `::test_the_two_regimes_of_the_window` |
 | Wie sieht das Vorzeichenmuster im Standard-Lager aus? | Von 9 Zellen (ρ = 0/50/100 % × w = 2/4/8) hilft das Fenster in 1 belastbar (ρ = 100 %, w = 2: +10,0 ± 3,3), schadet in 2 (u. a. ρ = 0 %, w = 8: -32,4 ± 5,9), 6 ohne belastbaren Unterschied | `::test_rho_sweep_sign_pattern_in_the_standard_lager` |
-| Holt das Fenster das Blockieren zurück? | Nein, nur einen Teil: Standard, w = 2: +11,9 ± 3,6 von 279,3 – die Blockade bleibt | `::test_standard_lager_numbers_in_the_readme` |
+| Holt das Fenster das Blockieren zurück? | Nein, nur einen Teil: Standard, w = 2: +11,9 ± 3,6 Minuten, das sind 4,3 % der gesamten EDD-Verspätung von 279,3 und 8,5 % des Blockier-Aufpreises (279,3 − 139,5 = 139,8) – die Blockade bleibt | `::test_standard_lager_numbers_in_the_readme` |
 | Wie viel ist selbst bei bester Planung unvermeidbar? | **Vorab-Messung** (10 Kleininstanzen je ρ, 6 Gänge, 24 Bestellungen, K = 3, 12 s Limit je CP-Lauf, mit Blockieren jeweils 9 von 10 Läufen bewiesen optimal, `messreihe_wellen_konflikt/cp_gap.json`): das Optimum liegt 19,6 % (ρ = 0) bzw. 13,0 % (ρ = 1) unter EDD und zahlt 29,2 % bzw. 35,1 % Aufpreis fürs Blockieren gegenüber dem blockierfreien Optimum. **Nicht Teil der CI-Tests** (Löser-Läufe mit Zeitlimit) | – (Vorab-Messung) |
 
 ## Ehrliche Grenzen
 
-- **Kein Sieger, sondern eine bedingte Aussage**: das Konflikt-Fenster holt im günstigsten Regime nur einen kleinen Teil des Blockierens zurück (Standard: 11,9 von 279,3 Minuten) und schadet in großen Teilen des
+- **Kein Sieger, sondern eine bedingte Aussage**: das Konflikt-Fenster holt im Standardlager nur einen kleinen Teil des Blockierens zurück (11,9 Minuten, das sind 8,5 % des Blockier-Aufpreises von 139,8 Minuten = 279,3 − 139,5 bzw. 4,3 % der gesamten EDD-Verspätung von 279,3; bei engen Fristen, ρ = 100 % und w = 4 sind es +17,9) und schadet in großen Teilen des
   Parameterraums. Es ist eine einfache Heuristik; eine echte blockier-bewusste Routenplanung (Besuchsreihenfolge im Batch an freie Gänge anpassen) ist nicht enthalten und könnte mehr vom Potenzial heben.
 - **Stark stilisiert**: S-Shape mit ganzer Gangdurchquerung, Einzelressource Gang mit FIFO, alle Bestellungen zum Zeitpunkt 0 (keine Ankünfte über die Zeit), feste Kommissionierer-Zahl, frist-blind vorgebildete Batches.
   Konkurrierende Modelle (Mehrfachbelegung breiter Gänge, Überholen, Rückkehr-Routen) würden die Größenordnungen verschieben.
