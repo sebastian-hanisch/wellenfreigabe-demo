@@ -1,4 +1,4 @@
-"""Ereignissimulation mit Gang-FIFO und Freigaberegeln (FIFO, EDD, EDD mit Konflikt-Fenster).
+"""Ereignisdiskrete Simulation mit Gang-FIFO und Freigaberegeln (FIFO, EDD, EDD mit Konflikt-Fenster).
 
 UNVERAENDERT uebernommen aus lager-planung/messreihe_wellen_konflikt/wellen.py. Jeder Gang ist eine
 Einzelressource (kein Ueberholen, FIFO-Warteschlange am Eingang), K Kommissionierer, Freigabe sofort bei

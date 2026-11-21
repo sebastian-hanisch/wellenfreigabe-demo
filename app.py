@@ -347,7 +347,7 @@ $\arg\min_{c \in W} (\text{conf}(c), f_c, c)$. Für $w = 1$ ist das EDD.
 **Statistik.** Für zwei Regeln $r, r'$ und Instanzen $j = 1..80$ ist $\Delta_j = z_j(r) - z_j(r')$ die gepaarte Differenz der gewichteten Verspätung; berichtet werden $\bar\Delta$ und $\text{SE} = s_\Delta / \sqrt{80}$
 (in Minuten). Ein Vorzeichen gilt als belastbar, wenn $|\bar\Delta| > 2\,\text{SE}$.
 
-Implementiert in `wfg_scenario.py` (Instanz, Batching, Route), `wfg_sim.py` (Ereignissimulation, Regeln), `wfg_cp.py` (CP-SAT, Größenprüfung) und `wfg_evaluation.py` (Population, gepaarte Urteile, Sweeps).
+Implementiert in `wfg_scenario.py` (Instanz, Batching, Route), `wfg_sim.py` (Ereignisdiskrete Simulation, Regeln), `wfg_cp.py` (CP-SAT, Größenprüfung) und `wfg_evaluation.py` (Population, gepaarte Urteile, Sweeps).
         """
     )
 

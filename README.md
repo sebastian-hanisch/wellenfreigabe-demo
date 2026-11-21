@@ -119,7 +119,7 @@ CP-Handinstanz mit Gewicht 3 (Optimum 300 statt 200); (4) das Zurückrunden beim
 | `wfg_constants.py` | Regler-Grenzen, feste Parameter, Regeln, Farben, `PRESETS` | neu |
 | `wfg_presets.py` | `SETTING_SPECS`, Permalink, Presets, Seed-Knopf | Muster `rrs_presets.py` |
 | `wfg_scenario.py` | `Cfg`, Greedy-Seed-Batching, S-Shape-Route, `make_instance` | `messreihe_wellen_konflikt/wellen.py`, unverändert |
-| `wfg_sim.py` | Ereignissimulation mit Gang-FIFO, Regeln FIFO/EDD/EDD-w | `wellen.py`, unverändert |
+| `wfg_sim.py` | Ereignisdiskrete Simulation mit Gang-FIFO, Regeln FIFO/EDD/EDD-w | `wellen.py`, unverändert |
 | `wfg_cp.py` | CP-SAT-Modell (`ortools` beim Aufruf importiert), Größenprüfung des Exakt-Tabs | `wellen.py`, unverändert (+ Größenprüfung, Zielwert gerundet statt abgeschnitten) |
 | `wfg_evaluation.py` | Population (80 Instanzen), gepaarte Urteile, Meldungszustände, Kommissionierer- und ρ-Sweep, Exakt-Zusammenfassung | Muster `rvm_evaluation.py` |
 | `wfg_visualization.py` | Gantt der Gang-Belegung, Vorteil je Kommissionierer-Zahl, Fenster-Gewinn je ρ (alle Achsen fest) | neu |
