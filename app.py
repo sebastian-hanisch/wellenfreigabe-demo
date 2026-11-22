@@ -276,7 +276,7 @@ vorab zu **Batches** mit höchstens 15 Positionen gebündelt – nach Gangähnli
 Richtung, jeder Gang mit Positionen wird ganz durchquert, bei ungerader Gangzahl der letzte als Sackgasse, am Ende zurück zum Depot.
 
 **Gang als Einzelressource.** In einem schmalen Gang kann niemand überholen: jeder Gang bedient einen Kommissionierer zur Zeit, wer ankommt, wartet in einer FIFO-Warteschlange am Eingang (der graue Streifen in der
-Gang-Belegung). Die Querwege vorn und hinten sind frei. Wird ein Kommissionierer frei, bekommt er sofort den nächsten Batch.
+Gang-Belegung). Dieses Warten heißt Blockieren (englisch Picker Blocking). Die Querwege vorn und hinten sind frei. Wird ein Kommissionierer frei, bekommt er sofort den nächsten Batch.
 
 **Fristen.** Jede Bestellung hat eine Frist relativ zur geschätzten Gesamtdauer (Fristendruck: kleiner = enger); Express-Bestellungen (Gewicht 3) haben engere Fristen. Die Frist eines Batches ist die früheste Frist
 seiner Bestellungen; Ziel ist die **gewichtete Gesamtverspätung** in Minuten.

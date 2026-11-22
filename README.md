@@ -3,7 +3,7 @@
 **[→ Demo live ausprobieren](https://sebastianhanisch-wellenfreigabe-demo.streamlit.app/)**
 
 Interaktive Fall-Demo (Lager-Linie): Kommissionierer arbeiten vorgebildete **Batches** mit **Versandfristen** ab und laufen dabei durch schmale Gänge, in denen sie sich **nicht überholen** können – jeder Gang ist eine
-Einzelressource mit FIFO-Warteschlange am Eingang. Die Demo beantwortet: **Wie viel kostet das Blockieren, wie viel vom Vorteil einer Fristenregel bleibt dann übrig – und wann lohnt es sich, Gangkonflikte gezielt zu
+Einzelressource mit FIFO-Warteschlange am Eingang. Die Demo beantwortet: **Wie viel kostet das Blockieren (englisch Picker Blocking), wie viel vom Vorteil einer Fristenregel bleibt dann übrig – und wann lohnt es sich, Gangkonflikte gezielt zu
 vermeiden, obwohl man dafür dringende Batches zurückstellt?**
 
 Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. **Erweiterung der Batching-Demo** (`order_batch-demo`, „baut aus“): sie hebt zwei stillschweigende Annahmen dort
